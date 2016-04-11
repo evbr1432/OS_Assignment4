@@ -1,6 +1,6 @@
 /*
  * File: mix_fork.c
- * Author: Juan Carlos Herrera
+ * Author:
  * Project: CSCI 3753 Programming Assignment 3
  * Create Date: 8/11/15
  * Description:
