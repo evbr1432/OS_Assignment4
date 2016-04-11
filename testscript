@@ -1,0 +1,120 @@
+#!/bin/bash
+# File: testscript
+# Author: Juan Carlos Herrera
+# Project: CSCI 3753 Programming Assignment 4
+# Create Date: 5/11/15
+# Description:
+#	A simple bash script to run a signle copy of each test case
+#	and gather the relevent data.
+
+ITERATIONS=1000000
+BYTESTOCOPY=102400
+BLOCKSIZE=1024
+
+# APPENDIX
+# e - elapsed real time in seconds
+# u - Total number of CPU-seconds that the process spent in user mode.
+# S - seconds spent in kernel mode,
+# P - Percentage of the CPU that this job got, computed as (%U + %S) /E, 
+# c - number of times the program context sitched voluntarily, 
+# w - Number of waits: times that the program was context-switched voluntarily.
+
+#WaitTime: Realtime - (System time + user time) -> e - (u+s)
+
+#TIMEFORMAT="wall=%e,user=%U,system=%S,CPU=%P,i-switched=%c,v-switched=%w"
+TIMEFORMAT="%e,%U,%S,%P,%c,%w"
+MAKE="make -s"
+
+echo Building code...
+$MAKE clean
+$MAKE
+
+COUNT=0
+SCHED=SCHED_RR
+
+ARR=(cpu io mix)
+
+#Loop through Fork COUNT
+for i in `seq 1 4`;
+do
+	case $i in
+	1) #Single
+		COUNT=1
+		;;
+	2) #Low
+		COUNT=8
+		;;
+	3) #Medium
+		COUNT=64
+		;;
+	*) #High
+		COUNT=128
+		;;
+	esac
+	#Loop through SCHEDuler type
+	for j in `seq 1 3`;
+	do
+		case $j in
+		1) #OTHER
+			SCHED=SCHED_OTHER
+			;;
+		2) #FIFO
+			SCHED=SCHED_FIFO
+			;;
+		*) #RR
+			SCHED=SCHED_RR
+			;;
+		esac
+		#Loop through process type
+
+		#CPU bound
+		echo CPU,$SCHED,$COUNT
+        /usr/bin/time -f "$TIMEFORMAT" ./pi_fork $ITERATIONS $SCHED $COUNT > /dev/null
+
+        #I/O bound
+        echo IO,$SCHED,$COUNT
+        /usr/bin/time -f "$TIMEFORMAT" ./rw_fork $BYTESTOCOPY $BLOCKSIZE rwinput rwoutput $SCHED $COUNT > /dev/null
+
+        #BOTH
+        echo MIX,$SCHED,$COUNT
+        /usr/bin/time -f "$TIMEFORMAT" ./mix_fork $BYTESTOCOPY $BLOCKSIZE rwinput rwoutput $ITERATIONS $SCHED $COUNT > /dev/null
+	done
+done
+
+rm -rf rwoutput-*
+rm -rf rwinput*
+
+
+
+
+echo Starting test runs...
+
+ echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER SINGLE
+ echo ------------------------\n
+ /usr/bin/time -f "$TIMEFORMAT" ./pi_fork $ITERATIONS SCHED_OTHER 1 > /dev/null
+ echo ------------------------\n
+
+ echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER SMALL
+ echo ------------------------\n
+ /usr/bin/time -f "$TIMEFORMAT" ./pi_fork $ITERATIONS SCHED_OTHER 5 > /dev/null
+ echo ------------------------\n
+
+ echo ------------------------\n
+ echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER MEDIUM
+ /usr/bin/time -f "$TIMEFORMAT" ./pi_fork $ITERATIONS SCHED_OTHER 50 > /dev/null
+ echo ------------------------\n
+
+ echo ------------------------\n
+ echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER LARGE
+ /usr/bin/time -f "$TIMEFORMAT" ./pi_fork $ITERATIONS SCHED_OTHER 100 > /dev/null
+ echo ------------------------\n
+
+ echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with 1 simultaneous process...
+ /usr/bin/time -f "$TIMEFORMAT" sudo ./pi-SCHED $ITERATIONS SCHED_FIFO > /dev/null
+
+ echo Calculating pi over $ITERATIONS iterations using SCHED_RR with 1 simultaneous process...
+ /usr/bin/time -f "$TIMEFORMAT" sudo ./pi-SCHED $ITERATIONS SCHED_RR > /dev/null
+
+ echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+ echo using SCHED_OTHER with 1 simultaneous process...
+ /usr/bin/time -f "$TIMEFORMAT" ./rw $BYTESTOCOPY $BLOCKSIZE > /dev/null

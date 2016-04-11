@@ -1,0 +1,102 @@
+Building code...
+1024+0 records in
+1024+0 records out
+1048576 bytes (1.0 MB) copied, 0.0842778 s, 12.4 MB/s
+CPU,SCHED_OTHER,1
+0.06,0.06,0.05,198%,25,1
+IO,SCHED_OTHER,1
+0.31,0.00,0.01,4%,4,201
+MIX,SCHED_OTHER,1
+0.34,0.09,0.31,117%,66,201
+CPU,SCHED_FIFO,1
+0.05,0.05,0.05,198%,14,2
+IO,SCHED_FIFO,1
+0.32,0.00,0.01,4%,3,201
+MIX,SCHED_FIFO,1
+0.34,0.11,0.29,117%,48,201
+CPU,SCHED_RR,1
+0.06,0.08,0.04,198%,20,2
+IO,SCHED_RR,1
+0.31,0.00,0.01,5%,8,201
+MIX,SCHED_RR,1
+0.32,0.10,0.28,120%,42,202
+CPU,SCHED_OTHER,8
+0.27,0.66,0.23,323%,229,1
+IO,SCHED_OTHER,8
+0.31,0.00,0.01,3%,2,200
+MIX,SCHED_OTHER,8
+0.86,0.64,0.75,162%,501,2238
+CPU,SCHED_FIFO,8
+0.21,0.74,0.08,380%,33,8
+IO,SCHED_FIFO,8
+0.32,0.00,0.00,2%,1,201
+MIX,SCHED_FIFO,8
+0.77,0.63,0.54,152%,510,1924
+CPU,SCHED_RR,8
+0.22,0.63,0.10,335%,35,7
+IO,SCHED_RR,8
+0.30,0.00,0.01,3%,2,201
+MIX,SCHED_RR,8
+0.77,0.75,0.58,173%,555,2570
+CPU,SCHED_OTHER,64
+1.72,3.99,0.14,239%,1285,40
+IO,SCHED_OTHER,64
+0.33,0.00,0.01,2%,1,206
+MIX,SCHED_OTHER,64
+2.25,3.85,0.87,210%,2467,13839
+CPU,SCHED_FIFO,64
+1.18,4.49,0.05,382%,10,44
+IO,SCHED_FIFO,64
+0.69,0.00,0.01,2%,2,201
+MIX,SCHED_FIFO,64
+2.21,4.92,0.85,260%,1429,16048
+CPU,SCHED_RR,64
+1.75,5.41,0.09,313%,107,52
+IO,SCHED_RR,64
+0.32,0.00,0.01,3%,2,201
+MIX,SCHED_RR,64
+2.08,4.98,0.95,284%,1374,16338
+CPU,SCHED_OTHER,128
+3.64,8.53,0.13,237%,3015,79
+IO,SCHED_OTHER,128
+0.32,0.00,0.00,2%,9,201
+MIX,SCHED_OTHER,128
+4.06,7.39,1.20,211%,4237,25001
+CPU,SCHED_FIFO,128
+3.64,11.79,0.07,325%,59,106
+IO,SCHED_FIFO,128
+0.33,0.00,0.02,5%,3,201
+MIX,SCHED_FIFO,128
+3.93,10.63,1.14,298%,2180,29016
+CPU,SCHED_RR,128
+3.99,10.76,0.03,270%,204,96
+IO,SCHED_RR,128
+0.60,0.00,0.01,1%,1,201
+MIX,SCHED_RR,128
+4.21,9.41,1.19,251%,2179,28071
+Starting test runs...
+Calculating pi over 1000000 iterations using SCHED_OTHER SINGLE
+------------------------n
+0.05,0.06,0.05,198%,21,1
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER SMALL
+------------------------n
+0.18,0.41,0.14,298%,143,3
+------------------------n
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER MEDIUM
+1.42,3.44,0.13,251%,1052,30
+------------------------n
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER LARGE
+2.94,7.77,0.13,268%,2777,67
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_FIFO with 1 simultaneous process...
+0.09,0.09,0.00,100%,4,4
+Calculating pi over 1000000 iterations using SCHED_RR with 1 simultaneous process...
+0.16,0.15,0.00,99%,4,4
+Copying 102400 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_OTHER with 1 simultaneous process...
+Failed to open input file: No such file or directory
+Command exited with non-zero status 1
+0.00,0.00,0.00,100%,2,1

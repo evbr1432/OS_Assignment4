@@ -1,0 +1,54 @@
+Building code...
+CPU,SCHED_OTHER,1
+IO,SCHED_OTHER,1
+MIX,SCHED_OTHER,1
+CPU,SCHED_FIFO,1
+IO,SCHED_FIFO,1
+MIX,SCHED_FIFO,1
+CPU,SCHED_RR,1
+IO,SCHED_RR,1
+MIX,SCHED_RR,1
+CPU,SCHED_OTHER,8
+IO,SCHED_OTHER,8
+MIX,SCHED_OTHER,8
+CPU,SCHED_FIFO,8
+IO,SCHED_FIFO,8
+MIX,SCHED_FIFO,8
+CPU,SCHED_RR,8
+IO,SCHED_RR,8
+MIX,SCHED_RR,8
+CPU,SCHED_OTHER,64
+IO,SCHED_OTHER,64
+MIX,SCHED_OTHER,64
+CPU,SCHED_FIFO,64
+IO,SCHED_FIFO,64
+MIX,SCHED_FIFO,64
+CPU,SCHED_RR,64
+IO,SCHED_RR,64
+MIX,SCHED_RR,64
+CPU,SCHED_OTHER,128
+IO,SCHED_OTHER,128
+MIX,SCHED_OTHER,128
+CPU,SCHED_FIFO,128
+IO,SCHED_FIFO,128
+MIX,SCHED_FIFO,128
+CPU,SCHED_RR,128
+IO,SCHED_RR,128
+MIX,SCHED_RR,128
+Starting test runs...
+Calculating pi over 1000000 iterations using SCHED_OTHER SINGLE
+------------------------n
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER SMALL
+------------------------n
+------------------------n
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER MEDIUM
+------------------------n
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_OTHER LARGE
+------------------------n
+Calculating pi over 1000000 iterations using SCHED_FIFO with 1 simultaneous process...
+Calculating pi over 1000000 iterations using SCHED_RR with 1 simultaneous process...
+Copying 102400 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_OTHER with 1 simultaneous process...
